@@ -28,7 +28,7 @@
 	<div class="form-title">
 	Let's do This!
 	</div>
-	<form>
+	<form id="sign-up-form" >
 	  <div class="input-holder">
 	    <label for="first-name">FIRST NAME</label>
 	    <input name="first-name">
@@ -50,17 +50,34 @@
 	  </div>
 
 	  <div class="input-holder">
-	    <label for="password">PASSWORD</label>
-	    <input type="password" name="password">
+	    <label for="password" >PASSWORD</label>
+	    <input minlength="8" type="password" name="password" id="pw" onkeyup='checkpws();'>
 	  </div>
 
 	  <div class="input-holder">
 	    <label for="confirm-password">CONFIRM PASSWORD</label>
-	    <input type="password" name="confirm-password">
+	    <input minlength="8" type="password" name="confirm-password" id="pwc" 
+	      onkeyup="checkpws();">
 	  </div>
+	  <div id="oops" class="oops"></div>
 	</form>
       </div>
-      <div class="shadow-line"/>
+      <button class="sign-up-butt" type="submit" form="sign-up-form" >
+	Create Account
+      </button>
+      <div class="have-account-container">
+	Already have an account? <span>Log in</span>
+      </div>
     </div>
+    <script>
+      const checkpws = function(){
+	if(document.getElementById("pw").value === document.getElementById("pwc").value){
+	  document.getElementById("oops").innerHTML = "";
+	}
+	else{
+	  document.getElementById("oops").innerHTML = "*passwords do not match";
+	}
+      }
+    </script>
   </body>
 </html>
